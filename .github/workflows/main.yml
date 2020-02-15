@@ -8,10 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.803
+      - name: Build with dotnet
+        run: dotnet build src/aws-gateway-lambda.lambda/aws-gateway-lambda.lambda.csproj --configuration Release
+      - name: Run Lambda Unit Tests
+        run: dotnet test tests/aws-gateway-lambda.lambda.Tests/aws-gateway-lambda.lambda.Tests.csproj
+      - name: Publish Code
+        run: dotnet publish src/aws-gateway-lambda.lambda/aws-gateway-lambda.lambda.csproj --configuration Release
