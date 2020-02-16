@@ -17,7 +17,7 @@ namespace aws_gateway_lambda.lambda
     {
         
         
-        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+        public APIGatewayProxyResponse ToUpper(APIGatewayProxyRequest request, ILambdaContext context)
         {
             if (request == null ) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.InternalServerError};
             if(request.PathParameters == null) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.BadRequest};

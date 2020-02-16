@@ -24,7 +24,7 @@ namespace aws_gateway_lambda.lambda.Tests
             var request = new APIGatewayProxyRequest();
             request.PathParameters = new Dictionary<string, string> { { "name", "hello world" }};
             
-            var upperCase = function.FunctionHandler(request, context);
+            var upperCase = function.ToUpper(request, context);
             
             Assert.Equal("HELLO WORLD", upperCase.Body);
         }
@@ -34,7 +34,7 @@ namespace aws_gateway_lambda.lambda.Tests
         {
             var function = new Function();
             var context = new TestLambdaContext();
-            var response = function.FunctionHandler(null, context);
+            var response = function.ToUpper(null, context);
             
             Assert.Equal((int)HttpStatusCode.InternalServerError, response.StatusCode);
         }
@@ -46,7 +46,7 @@ namespace aws_gateway_lambda.lambda.Tests
             var context = new TestLambdaContext();
             var request = new APIGatewayProxyRequest();
             request.PathParameters = null;
-            var response = function.FunctionHandler(request, context);
+            var response = function.ToUpper(request, context);
             
             Assert.Equal((int)HttpStatusCode.BadRequest, response.StatusCode);
         }
@@ -58,7 +58,7 @@ namespace aws_gateway_lambda.lambda.Tests
             var context = new TestLambdaContext();
             var request = new APIGatewayProxyRequest();
             request.PathParameters = new Dictionary<string, string> { { "test", "hello world" }};;
-            var response = function.FunctionHandler(request, context);
+            var response = function.ToUpper(request, context);
             
             Assert.Equal((int)HttpStatusCode.NotFound, response.StatusCode);
         }
