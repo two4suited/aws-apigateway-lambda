@@ -1,4 +1,5 @@
 using Amazon.CDK;
+using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.Lambda;
 
 namespace aws
@@ -15,6 +16,16 @@ namespace aws
                     Code = Code.FromAsset("../aws-gateway-lambda.lambda/bin/Release/netcoreapp2.1/publish"),
                     Handler = "aws-gateway-lambda.lambda::aws_gateway_lambda.lambda.Function::FunctionHandler"
                 });
+
+            var api = new RestApi(this, "api", new RestApiProps()
+            {
+                RestApiName = "TestApi"
+            });
+            
+            api.Root.AddMethod("ANY");
+            var root = api.Root.AddResource("{name}");
+            var getpersonIntegration = new LambdaIntegration(getperson);
+            root.AddMethod("GET", getpersonIntegration);
         }
     }
 }
