@@ -24,9 +24,9 @@ jobs:
         with:
           cdk_subcommand: 'deploy'
           actions_comment: false
-          args: '--require-approval=never'
+          cdk_requireapproval: 'never'
           working_dir: 'src/aws-gateway-lambda.infrastructure'
-          version: '1.24.0'
+          cdk_version: '1.24.0'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
