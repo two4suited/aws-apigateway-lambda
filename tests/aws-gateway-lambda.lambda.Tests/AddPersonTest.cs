@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Net;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.TestUtilities;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace aws_gateway_lambda.lambda.Tests
@@ -13,10 +14,12 @@ namespace aws_gateway_lambda.lambda.Tests
         {
             var function = new Function();
             var context = new TestLambdaContext();
-            var request = new Person(){ FirstName = "Bob",LastName = "Joe"};
+            var person = new Person(){ FirstName = "Bob",LastName = "Joe"};
+            var request = new APIGatewayProxyRequest {Body = JsonConvert.SerializeObject(person)};
             var response = function.AddPerson(request, context);
             
-            Assert.Equal(request.ToString(), response.Body);
+            
+            Assert.Equal(person.ToString(), response.Body);
         }
         
         [Fact]

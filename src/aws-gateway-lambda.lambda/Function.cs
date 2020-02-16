@@ -37,9 +37,11 @@ namespace aws_gateway_lambda.lambda
             };
         }
 
-        public APIGatewayProxyResponse AddPerson(Person person, ILambdaContext context)
+        public APIGatewayProxyResponse AddPerson(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            if (person == null ) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.BadRequest};
+            if (request == null ) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.BadRequest};
+
+            var person = JsonConvert.DeserializeObject<Person>(request.Body);
             
             return new APIGatewayProxyResponse
             {
