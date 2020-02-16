@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
@@ -18,21 +19,15 @@ namespace aws_gateway_lambda.lambda
         
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
+            if (request == null ) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.InternalServerError};
+            if(request.PathParameters == null) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.BadRequest};
+            if(!request.PathParameters.ContainsKey("name")) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.NotFound};
             
-            int statusCode = (request != null) ? 
-                (int)HttpStatusCode.OK : 
-                (int)HttpStatusCode.InternalServerError;
-
-            string name = null;
+            var name =request.PathParameters["name"];
             
-            if (request?.PathParameters != null && request.PathParameters.ContainsKey("name"))
-                name = request.PathParameters["name"];
-
-           
-         
-            var response = new APIGatewayProxyResponse
+            return new APIGatewayProxyResponse
             {
-                StatusCode = statusCode,
+                StatusCode = (int)HttpStatusCode.OK,
                 Body = name?.ToUpper(),
                 Headers = new Dictionary<string, string>
                 { 
@@ -40,8 +35,6 @@ namespace aws_gateway_lambda.lambda
                     { "Access-Control-Allow-Origin", "*" } 
                 }
             };
-    
-            return response;
         }
     }
 }

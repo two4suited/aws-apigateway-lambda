@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Xunit;
@@ -17,7 +18,6 @@ namespace aws_gateway_lambda.lambda.Tests
         [Fact]
         public void TestToUpperFunction()
         {
-
             // Invoke the lambda function and confirm the string was upper cased.
             var function = new Function();
             var context = new TestLambdaContext();
@@ -27,6 +27,40 @@ namespace aws_gateway_lambda.lambda.Tests
             var upperCase = function.FunctionHandler(request, context);
             
             Assert.Equal("HELLO WORLD", upperCase.Body);
+        }
+
+        [Fact]
+        public void NullRequestReturnsInternalServerError()
+        {
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var response = function.FunctionHandler(null, context);
+            
+            Assert.Equal((int)HttpStatusCode.InternalServerError, response.StatusCode);
+        }
+        
+        [Fact]
+        public void NoPathParameterReturnsBadRequest()
+        {
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var request = new APIGatewayProxyRequest();
+            request.PathParameters = null;
+            var response = function.FunctionHandler(request, context);
+            
+            Assert.Equal((int)HttpStatusCode.BadRequest, response.StatusCode);
+        }
+        
+        [Fact]
+        public void NoPathParameterMatchingNameReturnsNotFound()
+        {
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var request = new APIGatewayProxyRequest();
+            request.PathParameters = new Dictionary<string, string> { { "test", "hello world" }};;
+            var response = function.FunctionHandler(request, context);
+            
+            Assert.Equal((int)HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
