@@ -31,14 +31,14 @@ namespace aws
                 RestApiName = "TestApi"
             });
             
-            api.Root.AddMethod("ANY");
+           // api.Root.AddMethod("ANY");
             var root = api.Root.AddResource("{name}");
             
             var getpersonIntegration = new LambdaIntegration(getperson);
             root.AddMethod("GET", getpersonIntegration);
             
             var addpersonintegration = new LambdaIntegration(addperson);
-            root.AddMethod("POST", addpersonintegration);
+            api.Root.AddMethod("POST", addpersonintegration);
         }
     }
 }
