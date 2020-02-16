@@ -24,7 +24,7 @@ jobs:
         with:
           cdk_subcommand: 'deploy'
           actions_comment: false
-          args: '--require-approval never'
+          args: '--require-approval=never'
           working_dir: 'src/aws-gateway-lambda.infrastructure'
           version: '1.24.0'
         env:
