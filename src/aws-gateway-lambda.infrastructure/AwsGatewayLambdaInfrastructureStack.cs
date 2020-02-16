@@ -15,7 +15,6 @@ namespace aws
                     Code = Code.FromAsset("../aws-gateway-lambda.lambda/bin/Release/netcoreapp2.1/publish"),
                     Handler = "aws-gateway-lambda.lambda::aws_gateway_lambda.lambda.Function::FunctionHandler"
                 });
-            
         }
     }
 }
