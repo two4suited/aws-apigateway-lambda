@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aws-gateway-lambda.infrastructure", "src\aws-gateway-lambda.infrastructure\aws-gateway-lambda.infrastructure.csproj", "{90126BFA-95AA-43A6-922B-D633CDD9BED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aws-gateway-lambda.lambda", "src\aws-gateway-lambda.lambda\aws-gateway-lambda.lambda.csproj", "{814A2125-F809-495B-A592-544F5B39CFC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aws-gateway-lambda.lambda.Tests", "tests\aws-gateway-lambda.lambda.Tests\aws-gateway-lambda.lambda.Tests.csproj", "{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,5 +20,43 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|x64.Build.0 = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Debug|x86.Build.0 = Debug|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|x64.ActiveCfg = Release|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|x64.Build.0 = Release|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|x86.ActiveCfg = Release|Any CPU
+		{90126BFA-95AA-43A6-922B-D633CDD9BED2}.Release|x86.Build.0 = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|x64.Build.0 = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Debug|x86.Build.0 = Debug|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|x64.ActiveCfg = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|x64.Build.0 = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{814A2125-F809-495B-A592-544F5B39CFC2}.Release|x86.Build.0 = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|x64.Build.0 = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Debug|x86.Build.0 = Debug|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|x64.ActiveCfg = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|x64.Build.0 = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|x86.ActiveCfg = Release|Any CPU
+		{932C9BF8-FC8B-4EFB-B63A-9D7C55157BBF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

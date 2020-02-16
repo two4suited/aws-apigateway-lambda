@@ -1,3 +1,3 @@
 {
-  "app": "dotnet run -p AwsGatewayLambdaInfrastructure.csproj"
+  "app": "dotnet run -p aws-gateway-lambda.infrastructure.csproj"
 }
