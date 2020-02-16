@@ -36,5 +36,21 @@ namespace aws_gateway_lambda.lambda
                 }
             };
         }
+
+        public APIGatewayProxyResponse AddPerson(Person person, ILambdaContext context)
+        {
+            if (person == null ) return new APIGatewayProxyResponse(){ StatusCode = (int)HttpStatusCode.BadRequest};
+            
+            return new APIGatewayProxyResponse
+            {
+                StatusCode = (int)HttpStatusCode.OK,
+                Body = person.ToString(),
+                Headers = new Dictionary<string, string>
+                { 
+                    { "Content-Type", "application/json" }, 
+                    { "Access-Control-Allow-Origin", "*" } 
+                }
+            };
+        }
     }
 }
