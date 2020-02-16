@@ -22,11 +22,11 @@ namespace aws_gateway_lambda.lambda.Tests
             var function = new Function();
             var context = new TestLambdaContext();
             var request = new APIGatewayProxyRequest();
-            request.Body = "hello world";
+            request.PathParameters = new Dictionary<string, string> { { "name", "hello world" }};
             
             var upperCase = function.FunctionHandler(request, context);
             
-            Assert.Equal(JsonConvert.SerializeObject("HELLO WORLD"), upperCase.Body);
+            Assert.Equal("HELLO WORLD", upperCase.Body);
         }
     }
 }

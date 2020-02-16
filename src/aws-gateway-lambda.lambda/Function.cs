@@ -23,13 +23,17 @@ namespace aws_gateway_lambda.lambda
                 (int)HttpStatusCode.OK : 
                 (int)HttpStatusCode.InternalServerError;
 
-            string body = (request != null) ? 
-                JsonConvert.SerializeObject(request.Body) : string.Empty;
+            string name = null;
+            
+            if (request?.PathParameters != null && request.PathParameters.ContainsKey("name"))
+                name = request.PathParameters["name"];
+
+           
          
             var response = new APIGatewayProxyResponse
             {
                 StatusCode = statusCode,
-                Body = body.ToUpper(),
+                Body = name?.ToUpper(),
                 Headers = new Dictionary<string, string>
                 { 
                     { "Content-Type", "application/json" }, 
